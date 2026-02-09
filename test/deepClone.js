@@ -9,6 +9,30 @@ QUnit.module('Тестируем функцию deepClone', () => {
         assert.notStrictEqual(cloned, original, 'Копия должна быть независимой от оригинала');
     });
 
+    QUnit.test('Работает правильного для простого объекта c Nan', (assert) => {
+        const original = { a: 1, b: NaN };
+        const cloned = deepClone(original);
+
+        assert.deepEqual(cloned, original, 'Копия должна быть равна оригиналу');
+        assert.notStrictEqual(cloned, original, 'Копия должна быть независимой от оригинала');
+    });
+
+    QUnit.test('Работает правильного для простого объекта c undefined', (assert) => {
+        const original = { a: 1, b: undefined };
+        const cloned = deepClone(original);
+
+        assert.deepEqual(cloned, original, 'Копия должна быть равна оригиналу');
+        assert.notStrictEqual(cloned, original, 'Копия должна быть независимой от оригинала');
+    });
+
+    QUnit.test('Работает правильного для простого объекта c null', (assert) => {
+        const original = { a: 1, b: null };
+        const cloned = deepClone(original);
+
+        assert.deepEqual(cloned, original, 'Копия должна быть равна оригиналу');
+        assert.notStrictEqual(cloned, original, 'Копия должна быть независимой от оригинала');
+    });
+
     QUnit.test('Работает правильно для вложенного объекта', (assert) => {
         const original = { a: 1, b: { c: 2 } };
         const cloned = deepClone(original);
@@ -48,6 +72,20 @@ QUnit.module('Тестируем функцию deepClone', () => {
 
     QUnit.test('Работает правильно для примитивов', (assert) => {
         const original = 42;
+        const cloned = deepClone(original);
+
+        assert.deepEqual(cloned, original, 'Копия должна быть равна оригиналу');
+    });
+
+    QUnit.test('Работает правильно для примитивов', (assert) => {
+        const original = null;
+        const cloned = deepClone(original);
+
+        assert.deepEqual(cloned, original, 'Копия должна быть равна оригиналу');
+    });
+
+    QUnit.test('Работает правильно для примитивов', (assert) => {
+        const original = 'text';
         const cloned = deepClone(original);
 
         assert.deepEqual(cloned, original, 'Копия должна быть равна оригиналу');
