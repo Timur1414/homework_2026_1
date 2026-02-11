@@ -40,9 +40,7 @@ const deepClone = function (obj) {
         return obj;
 
     if (obj instanceof Array) {
-        let copy = [];
-        for (let i = 0; i < obj.length; i++)
-            copy[i] = deepClone(obj[i]);
+        let copy = obj.map(item => deepClone(item));
         return copy;
     }
     if (obj instanceof Set) {
